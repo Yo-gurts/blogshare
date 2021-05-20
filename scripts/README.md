@@ -1,6 +1,6 @@
 # 脚本说明
 
-## `fanyi.py` 命令行翻译工具（仅适用于linux，WSL也可）
+## `fanyi.py` 命令行翻译工具（仅适用于linux，WSL也可）[source code](https://github.com/Yo-gurts/dict)
 
 基于有道翻译！！
 
