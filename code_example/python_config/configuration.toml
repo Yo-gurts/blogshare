@@ -1,0 +1,32 @@
+[Worker]
+Host = 'localhost'
+Port = 10001
+Protocol = 'http'
+Epoch = 1
+BatchSize = 10
+Learning_rate = 0.001
+JobType = 'mnist'     # 该worker能参与的任务类型
+DatasetSize = 1000    # 数据集的大小，如图片的数量
+
+
+[Clients]
+  [Clients.Coredata]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 48081
+
+  [Clients.Metadata]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 48081
+
+  [Clients.Redis]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 6378
+
+  [Clients.Rest]
+  Protocol = 'http'
+  Host = 'localhost'
+  Port = 49986
+
