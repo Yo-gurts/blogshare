@@ -3,7 +3,7 @@
 >
 > 总结：这一系列的题更多的是找规律？还有就是熟悉基础语法:joy:
 
-# 1. JZ1 二维数组中的查找
+# 1. [JZ1](https://www.nowcoder.com/practice/abc3fe2ce8e146608e868a70efebf62e) 二维数组中的查找
 
 * 解1：从数组右上角开始，左边的数都比它小，下面的数都比它大！
 
@@ -24,7 +24,7 @@ func Find( target int,  array [][]int ) bool {
 }
 ```
 
-# 2. JZ7 斐波那契数列
+# 2. [JZ7](https://www.nowcoder.com/practice/c6c7742f5ba7442aada113136ddea0c3) 斐波那契数列
 
 * 解1
 
