@@ -14,6 +14,14 @@ sudo apt update >> log.txt
 echo "apt update!!\n"
 
 
+# 安装终端翻译工具
+sudo apt -y install xsel python3-pip
+pip3 install pyperclip
+sudo mv ../fanyi.py /usr/local/bin/fanyi
+sudo chmod +x /usr/local/bin/fanyi
+echo "安装终端翻译工具!!"
+
+
 # 安装一些有用的轻量工具
 sudo apt -y install tldr poppler-utils
 
@@ -53,173 +61,19 @@ show_channel_urls: true
 EOF
 
 
-# 安装 chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-rm google-chrome-stable_current_amd64.deb
-echo "安装 chrome!!"
-
-
-# 安装终端翻译工具
-sudo apt -y install xsel python3-pip
-pip install pyperclip
-sudo touch /usr/local/bin/fanyi
-sudo tee -a /usr/local/bin/fanyi << EOF
-#!/usr/bin/python3
-
-import sys
-import json
-import signal
-import urllib.request as urllib
-import threading
-import pyperclip
-import time
-
-class Dict:
-    key = '716426270'
-    keyFrom = 'wufeifei'
-    api = 'http://fanyi.youdao.com/openapi.do?keyfrom=wufeifei&key=716426270&type=data&doctype=json&version=1.1&q='
-    content = None
-
-    def __init__(self, argv):
-        try:
-            self.api = self.api + urllib.quote(argv)
-            self.translate()
-        except Exception as e:
-            print("exception: ", e)
-
-    def translate(self):
-        content = urllib.urlopen(self.api).read()
-        self.content = json.loads(content)
-        self.parse()
-
-    def parse(self):
-        code = self.content['errorCode']
-        if code == 0:  # Success
-            try:
-                u = self.content['basic']['us-phonetic'] # English
-                e = self.content['basic']['uk-phonetic']
-            except KeyError:
-                try:
-                    c = self.content['basic']['phonetic'] # Chinese
-                except KeyError:
-                    c = 'None'
-                u = 'None'
-                e = 'None'
-
-            try:
-                explains = self.content['basic']['explains']
-            except KeyError:
-                explains = 'None'
-
-            print('\033[1;31m################################### \033[0m')
-            # flag
-            #print('\033[1;31m# \033[0m', self.content['query'], self.content['translation'][0], end="")
-            print('\033[1;31m# \033[0m', self.content['query'], self.content['translation'][0])
-            if u != 'None':
-                print('(U:', u, 'E:', e, ')')
-            elif c != 'None':
-                print('(Pinyin:', c, ')')
-            else:
-                print()
-
-            if explains != 'None':
-                for i in range(0, len(explains)):
-                    print('\033[1;31m# \033[0m', explains[i])
-            else:
-                print('\033[1;31m# \033[0m Explains None')
-            print('\033[1;31m################################### \033[0m')
-            # Phrase
-            # for i in range(0, len(self.content['web'])):
-            #     print self.content['web'][i]['key'], ':'
-            #     for j in range(0, len(self.content['web'][i]['value'])):
-            #         print self.content['web'][i]['value'][j]
-        elif code == 20:  # Text to long
-            print('WORD TO LONG')
-        elif code == 30:  # Trans error
-            print('TRANSLATE ERROR')
-        elif code == 40:  # Don't support this language
-            print('CAN\'T SUPPORT THIS LANGUAGE')
-        elif code == 50:  # Key failed
-            print('KEY FAILED')
-        elif code == 60:  # Don't have this word
-            print('DO\'T HAVE THIS WORD')
-
-
-class Clipboard (threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.raw = "Welcome!!"
-
-    def run(self):
-        global exitflag
-        while not exitflag:
-            time.sleep(0.5)
-            new_raw = pyperclip.paste()
-            if new_raw != self.raw:
-                self.raw = new_raw
-                words = self.raw.split(",")
-                print()
-                for word in words:
-                    Dict(word)
-                print(">>>", end="", flush=True)
-
-
-class Outinput (threading.Thread):
-    def __init__(self):
-        threading.Thread.__init__(self)
-
-    def run(self):
-        global exitflag
-        while not exitflag:
-            raw = input(">>>")
-            words = raw.split(",")
-            if words == ['exit']:
-                exitflag = True
-            else:
-                for word in words:
-                    Dict(word)
-
-
-def quit():
-    print("bye!!")
-    sys.exit()
-
-if __name__ == '__main__':
-    exitflag = False
-
-    if len(sys.argv) >= 2:
-        for item in sys.argv[1:]:
-            Dict(item)
-    else:
-        try:
-            signal.signal(signal.SIGINT, quit)
-            signal.signal(signal.SIGTERM, quit)
-            
-            thread1 = Clipboard()
-            thread2 = Outinput()
-
-            thread1.setDaemon(True)
-            thread1.start()
-
-            thread2.setDaemon(True)     
-            thread2.start()
-            
-            thread1.join()
-            thread2.join()
-            print("bye!!")
-        except Exception as e:
-            print(e)
-EOF
-sudo chmod +x /usr/local/bin/fanyi
-echo "安装终端翻译工具!!"
-
 
 echo -e "\n\n\n"
 echo " -------------------------------------"
 echo " --------- Part4: 比较费时的安装 ------------"
 echo " -------------------------------------"
 echo -e "\n\n\n"
+
+
+# 安装 chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
+echo "安装 chrome!!"
 
 
 # 先输入passwd，之后5分钟使用不需要密码
@@ -268,3 +122,24 @@ wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt update
 sudo apt -y install typora >> log.txt
+
+
+# 安装 wps，新版本无法对pdf注释，所以安装旧版本
+wget https://wdl1.cache.wps.cn/wps/download/ep/Linux2019/10161/wps-office_11.1.0.10161_amd64.deb
+sudo dpkg -i wps-office_11.1.0.10161_amd64.deb
+echo "安装 wps"
+
+
+
+# 安装 sougou input
+sudo apt -y install fcitx fcitx-libs libfcitx-qt0 libqt5qml5 libqt5quick5 libqt5quickwidgets5 qml-module-qtquick2
+wget https://ime.sogouimecdn.com/202111132016/a831ae900d6b15cb92ac76cd7486a26d/dl/index/1612260778/sogoupinyin_2.4.0.3469_amd64.deb
+sudo dpkg -i sogoupinyin_2.4.0.3469_amd64.deb
+echo "安装 sougou 输入法，还需要按照此blog设置 https://blog.csdn.net/lupengCSDN/article/details/80279177 "
+
+
+# 安装 Qv2ray
+mkdir ~/AppImage
+echo "download from https://github.com/Qv2ray/Qv2ray/releases/download/v2.7.0/Qv2ray-v2.7.0-linux-x64.AppImage"
+echo "download from https://github.com/v2ray/v2ray-core/releases/download/v4.28.2/v2ray-linux-64.zip"
+echo "don't forget chmod +x Qv2ray-v2.7.0-linux-x64.AppImage"
