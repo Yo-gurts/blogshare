@@ -7,7 +7,7 @@ fedora 版本：fedora workstation live x86-64-30
 
 <details>
 <summary>目录</summary>
-    
+
 - [基础设置](#基础设置)
   - [set root passwd](#set-root-passwd)
   - [配置terminal](#配置terminal)
@@ -58,7 +58,7 @@ fedora 版本：fedora workstation live x86-64-30
   - [终端翻译工具(需网络)](#终端翻译工具需网络)
   - [后台支行命令，并将log输出到myout.file中](#后台支行命令并将log输出到myoutfile中)
   - [释放空间](#释放空间)
-</details>
+  </details>
 
 # 基础设置
 

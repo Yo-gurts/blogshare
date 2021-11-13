@@ -4,18 +4,18 @@
 下面的主要是我根据 官方文档  修改的 windows terminal 的配置，效果如下，
 
 效果预览1， 未使用背景图片，白色主题
-![效果预览1， 未使用背景图片](../images/Linux_WindowsTerminal美化/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOGVzdmZscGozMHN0MGkxcWI0LmpwZw)
+![效果预览1， 未使用背景图片](../images/Linux_WindowsTerminal%E7%BE%8E%E5%8C%96/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOGVzdmZscGozMHN0MGkxcWI0LmpwZw)
 黑色主题
-![TIM截图20200521182630.png](../images/Linux_WindowsTerminal美化/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOHh3djdkemozMHN0MGkxcWRwLmpwZw)
+![TIM截图20200521182630.png](../images/Linux_WindowsTerminal%E7%BE%8E%E5%8C%96/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOHh3djdkemozMHN0MGkxcWRwLmpwZw)
 效果预览2， 使用背景图片
-![效果预览2， 使用背景图片](../images/Linux_WindowsTerminal美化/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOGgzZm84aGozMG9jMGkxZHRiLmpwZw)
+![效果预览2， 使用背景图片](../images/Linux_WindowsTerminal%E7%BE%8E%E5%8C%96/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwOGgzZm84aGozMG9jMGkxZHRiLmpwZw)
 
 
 # 美化
 
 修改配置文件的位置： 点击箭头，在点击设置
 
-![打开设置](../images/Linux_WindowsTerminal美化/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwODMxb3RjNWozMDlhMDduNzU1LmpwZw)
+![打开设置](../images/Linux_WindowsTerminal%E7%BE%8E%E5%8C%96/aHR0cDovL3d3MS5zaW5haW1nLmNuL2xhcmdlLzAwNkNCeWVVZ3kxZ2YwODMxb3RjNWozMDlhMDduNzU1LmpwZw)
 
 ## 一定要先备份一下 默认的设置 ！！！
 
@@ -208,21 +208,22 @@
 
 有些快捷键是预定义的，在上面的配置文件里面看不到，[官方文档相关路径](https://docs.microsoft.com/zh-cn/windows/terminal/customize-settings/key-bindings)
 
-键位 | 功能
+|键位 | 功能|
 |:-|:-|
-alt+f4 | 关闭窗口 
-ctrl+shift+f | 查找
-ctrl+shift+space | 打开下拉菜单
-f11 或 alt+enter | 切换全屏
-ctrl+shift+d | 复制当前选项卡
-ctrl+shift+t | 新建选项卡
-ctrl+tab | 打开下一个选项卡
-alt+方向键 | 移动窗格焦点
-alt+shift+plus | 垂直拆分窗格
-alt+shift+ - | 水平拆分窗格
-ctrl+w | 关闭当前窗口
-ctrl+shift+w | 关闭当前窗口，分割后的
-ctrl+ = | 调大字号
-ctrl+ - | 调小字号
+|alt+f4 | 关闭窗口 |
+|ctrl+shift+f | 查找|
+|ctrl+shift+space | 打开下拉菜单|
+|f11 或 alt+enter | 切换全屏|
+|ctrl+shift+d | 复制当前选项卡|
+|ctrl+shift+t | 新建选项卡|
+|ctrl+tab | 打开下一个选项卡|
+|alt+方向键 | 移动窗格焦点|
+|alt+shift+plus | 垂直拆分窗格|
+|alt+shift+ - | 水平拆分窗格|
+|ctrl+w | 关闭当前窗口|
+|ctrl+shift+w | 关闭当前窗口，分割后的|
+|ctrl+ = | 调大字号|
+|ctrl+ - | 调小字号|
 
 目前好像还没有快速切换主题色的方法.....
+
